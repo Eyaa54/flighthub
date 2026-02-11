@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.flighthub.controllers.car.RentCarController" style="-fx-background-color: #4242ec;">
+    <!-- White Header with Back Button -->
+    <top>
+        <HBox style="-fx-background-color: white; -fx-padding: 10;" spacing="10">
+            <Button text="Back" onAction="#handleBackToDashboard" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 14px;"/>
+            <Label text="Rent Management" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: black;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="CENTER">
+            <ListView fx:id="locationListView" style="-fx-font-size: 16px;"/>
+            <!-- Centered HBox with white buttons -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Add Rent" onAction="#handleAddRent" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 14px;"/>
+                <Button text="Update Rent" onAction="#handleUpdateRent" style="-fx-background-color: white;-fx-text-fill: black; -fx-font-size: 14px;"/>
+                <Button text="Delete Rent" onAction="#handleDeleteRent" style="-fx-background-color: white; -fx-text-fill: black; -fx-font-size: 14px;"/>
+            </HBox>
+            <Label fx:id="statusLabel" style="-fx-text-fill: red;"/>
+        </VBox>
+    </center>
+</BorderPane>
