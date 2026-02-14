@@ -38,7 +38,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo '===== Construction de l image Docker ====='
-                sh 'docker build -t votre_dockerhub_username/flighthub:${BUILD_NUMBER} .'
+                sh 'docker build -t eyaa54/flighthub:${BUILD_NUMBER} .'
             }
         }
         
@@ -47,7 +47,7 @@ pipeline {
                 echo '===== Push vers Docker Hub ====='
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker push votre_dockerhub_username/flighthub:${BUILD_NUMBER}'
+                    sh 'docker push eyaa54/flighthub:${BUILD_NUMBER}'
                 }
             }
         }
