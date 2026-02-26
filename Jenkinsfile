@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 echo '===== Analyse qualité du code avec SonarQube ====='
-                sh 'mvn sonar:sonar -Dsonar.projectKey=flighthub -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.token=$SONAR_AUTH_TOKEN'
+                sh 'mvn sonar:sonar -Dsonar.projectKey=devops -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.token=$SONAR_AUTH_TOKEN'
             }
         }
         
@@ -49,7 +49,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 echo '===== Construction de l image Docker ====='
-                sh 'docker build -t eyagharby/flighthub:${BUILD_NUMBER} .'
+                sh 'docker build -t eyagharby/devops:${BUILD_NUMBER} .'
             }
         }
         
@@ -58,7 +58,7 @@ pipeline {
                 echo '===== Push vers Docker Hub ====='
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker push eyagharby/flighthub:${BUILD_NUMBER}'
+                    sh 'docker push eyagharby/devops:${BUILD_NUMBER}'
                 }
             }
         }
